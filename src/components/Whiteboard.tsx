@@ -41,9 +41,9 @@ export default function Whiteboard(props: { children?: React.ReactNode }) {
             if (!allowDrag) return;
             setWhiteboardPosition((prev) => {
                 prev.x +=
-                    (e.movementX * (window.innerWidth / window.outerWidth)) / 2;
+                    (e.movementX * (window.innerWidth / window.outerWidth));
                 prev.y +=
-                    (e.movementY * (window.innerWidth / window.outerWidth)) / 2;
+                    (e.movementY * (window.innerWidth / window.outerWidth));
                 return { ...prev };
             });
         },
