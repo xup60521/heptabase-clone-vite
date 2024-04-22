@@ -24,7 +24,7 @@ interface CardsState {
 export const useCardsStore = create<CardsState>((set, get) => ({
     cards: [],
     load_localstorage() {
-        const result = cardSchema.safeParse(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? ""))
+        const result = cardSchema.safeParse(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}"))
         if (result.success) {
             set(state => {
                 state.cards = result.data

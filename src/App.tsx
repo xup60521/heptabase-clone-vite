@@ -17,7 +17,7 @@ function App() {
                 </Whiteboard>
                 <WhiteboardPositionController />
             </WhiteboardProvider>
-            {/* <p className="absolute bottom-2 left-2 text-white">{`${window.innerWidth} ${window.outerWidth}`}</p> */}
+            <p className="absolute bottom-2 left-2 text-black">{`${window.innerWidth} ${window.outerWidth}`}</p>
         </main>
     );
 }

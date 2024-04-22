@@ -2,13 +2,22 @@ import { useContext, useEffect, useState } from "react";
 import { useCardsStore } from "../state/store";
 import { WhiteboardContext } from "./WhiteboardProvider";
 
-export default function Whiteboard(props: {
-    children?: React.ReactNode;
-}) {
+export default function Whiteboard(props: { children?: React.ReactNode }) {
     const [allowDrag, setAllowDrag] = useState(false);
-    const { addCard, updatePosition, load_localstorage, saveToLocalstorage, cards } = useCardsStore();
-    const { selectedCardID, setSelectedCardID, whiteboardPosition, setWhiteboardPosition } = useContext(WhiteboardContext);
-    const {x, y} = whiteboardPosition
+    const {
+        addCard,
+        updatePosition,
+        load_localstorage,
+        saveToLocalstorage,
+        cards,
+    } = useCardsStore();
+    const {
+        selectedCardID,
+        setSelectedCardID,
+        whiteboardPosition,
+        setWhiteboardPosition,
+    } = useContext(WhiteboardContext);
+    const { x, y } = whiteboardPosition;
 
     const whiteBoardEventHandler = {
         onContextMenu: (e) => e.preventDefault(),
@@ -50,13 +59,15 @@ export default function Whiteboard(props: {
 
     useEffect(() => {
         load_localstorage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(()=>{
-        saveToLocalstorage()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cards])
+    useEffect(() => {
+        if (cards) {
+            saveToLocalstorage();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cards]);
 
     return (
         <div
